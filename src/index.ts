@@ -27,7 +27,6 @@ const getErrorProperties = (error: unknown, allowedProperties: Iterable<string> 
   if (!error || typeof error !== 'object' || !allowedProperties) {
     return {};
   }
-  console.log({ allowedProperties });
 
   const allowedPropertiesSet = new Set(allowedProperties);
 

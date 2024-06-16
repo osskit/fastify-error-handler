@@ -89,7 +89,6 @@ describe('fastifyErrorHandler', () => {
         message: 'body/string must be string',
       });
       expect(log).toHaveBeenCalledOnce();
-      console.log(log.mock.calls[0]);
       expect(log).toHaveBeenCalledWith({
         error: expect.objectContaining({
           statusCode: 400,
