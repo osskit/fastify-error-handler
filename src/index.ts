@@ -46,9 +46,11 @@ export const fastifyErrorHandler =
 
     log?.({ error, request, reply });
 
-    await reply.status(status).send({
+    const payload = {
       status,
       message: (status < 500 ? getErrorMessage(error) : undefined) ?? STATUS_CODES[status],
       ...(status < 500 ? getErrorProperties(error, allowedProperties) : {}),
-    });
+    };
+
+    await reply.status(status).header('Content-Type', 'application/json; charset=utf-8').send(JSON.stringify(payload));
   };

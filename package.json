@@ -1,6 +1,6 @@
 {
   "name": "@osskit/fastify-error-handler",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "url": "https://github.com/osskit/fastify-error-handler"
   },
@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "lint:base": "eslint . --ext .ts",
+    "lint:base": "eslint .",
     "lint": "yarn lint:base --fix",
     "test": "vitest",
     "format": "prettier --write '**/*.{ts,js,json}'",
@@ -28,24 +28,20 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@osskit/eslint-config": "^1.0.25",
+    "@osskit/eslint-config": "^2.0.1",
     "@osskit/prettier-config": "^0.0.1",
     "@osskit/tsconfig": "^0.0.7",
     "@types/http-errors": "^2.0.4",
-    "@types/node": "^20.14.2",
-    "@typescript-eslint/eslint-plugin": "^7.13.0",
-    "@typescript-eslint/parser": "^7.13.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-unicorn": "^54.0.0",
-    "fastify": "^4.28.0",
+    "@types/node": "^22.1.0",
+    "eslint": "^9.8.0",
+    "fastify": "^4.28.1",
     "http-errors": "^2.0.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
-    "prettier": "^3.3.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.8",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.0.1",
+    "vitest": "^2.0.5"
   },
   "lint-staged": {
     "*.ts": "eslint --fix",
@@ -53,5 +49,6 @@
   },
   "peerDependencies": {
     "fastify": "^4.28.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
