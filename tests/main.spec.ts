@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import fastify from 'fastify';
 import createHttpError from 'http-errors';
+import type { FastifyErrorHandlerOptions } from '../src/index.js';
 import { fastifyErrorHandler } from '../src/index.js';
 
 describe('fastifyErrorHandler', () => {
@@ -46,7 +47,7 @@ describe('fastifyErrorHandler', () => {
         allowedProperties: ['test'],
       },
     ])(`should handle %s`, async ({ error, statusCode, message, props, allowedProperties }) => {
-      const log = vi.fn();
+      const log = vi.fn<NonNullable<FastifyErrorHandlerOptions['log']>>();
       const server = fastify();
       server.setErrorHandler(fastifyErrorHandler({ log, allowedProperties }));
       server.get('/', async () => {
@@ -54,6 +55,7 @@ describe('fastifyErrorHandler', () => {
         throw error;
       });
       const response = await server.inject('/');
+
       expect(response.statusCode).toBe(statusCode);
       expect(response.json()).toMatchObject({
         status: statusCode,
@@ -69,7 +71,7 @@ describe('fastifyErrorHandler', () => {
     });
 
     it('validation error', async () => {
-      const log = vi.fn();
+      const log = vi.fn<NonNullable<FastifyErrorHandlerOptions['log']>>();
       const server = fastify();
       server.setErrorHandler(fastifyErrorHandler({ log }));
       server.post(
@@ -83,6 +85,7 @@ describe('fastifyErrorHandler', () => {
         body: JSON.stringify({ number: 5, string: { a: 4 } }),
         headers: { 'Content-Type': 'application/json' },
       });
+
       expect(response.statusCode).toBe(400);
       expect(response.json()).toMatchObject({
         status: 400,
